@@ -25,7 +25,7 @@ export class PostgresLogDatasource implements LogDatasource {
       },
     });
 
-    console.log('Posgresql data saved');
+    console.log('Log saved in PostgreSQL');
   }
 
   async getLogs(severityLevel: LogSeverityLevel): Promise<LogEntity[]> {

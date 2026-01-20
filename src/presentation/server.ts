@@ -1,6 +1,7 @@
 import { LogSeverityLevel } from '../domain/entities/log.entity';
 import { LogRepository } from '../domain/repository/log.repository';
 import { CheckService } from '../domain/usecases/checks/check-service';
+import { CheckServiceMultiple } from '../domain/usecases/checks/check-service-multiple';
 import { SendEmailLogs } from '../domain/usecases/logs/send-email-logs';
 import { FileSystemDatasource } from '../infrastructure/datasource/file-system.datasource';
 import { MongoLogDatasource } from '../infrastructure/datasource/mongo-log.datasource';
@@ -9,7 +10,12 @@ import { LogRepositoryImpl } from '../infrastructure/repository/ log.repository.
 import { CronService } from './cron/cron-service';
 import { EmailService } from './email/email-service';
 
-const logRepository: LogRepository = new LogRepositoryImpl(new PostgresLogDatasource());
+const fsLogRepository: LogRepository = new LogRepositoryImpl(new FileSystemDatasource());
+const mongoLogRepository: LogRepository = new LogRepositoryImpl(new MongoLogDatasource());
+const PostgresLogDatasourceLogRepository: LogRepository = new LogRepositoryImpl(
+  new PostgresLogDatasource()
+);
+
 const emailService = new EmailService();
 
 export class Server {
@@ -32,8 +38,8 @@ export class Server {
     CronService.createJob('*/5 * * * * *', () => {
       const url: string = 'https://google.com';
 
-      new CheckService(
-        logRepository,
+      new CheckServiceMultiple(
+        [fsLogRepository, mongoLogRepository, PostgresLogDatasourceLogRepository],
         () => console.log(`Success in url: ${url}`),
         (error: string) => console.log(error)
       ).execute(url);
