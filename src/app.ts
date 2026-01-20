@@ -2,7 +2,7 @@ import { PrismaPg } from '@prisma/adapter-pg';
 import { envs } from './config/plugins/env.plugins';
 import { MongoDatabase } from './data/mongo';
 import { PrismaClient } from './generated/prisma/client';
-// import { Server } from './presentation/server';
+import { Server } from './presentation/server';
 
 (async () => {
   main();
@@ -28,5 +28,5 @@ async function main() {
 
   // const logs = await prisma.logModel.findMany();
 
-  // Server.start();
+  Server.start();
 }
