@@ -22,18 +22,15 @@ export class Server {
   public static async start() {
     console.log('Server started...');
 
-    // new SendEmailLogs(emailService, fileSystemLogRepository).execute([
-    //   'francorangelcoronado@gmail.com',
-    //   'franrangel265@gmail.com',
-    // ]);
+    new SendEmailLogs(emailService, fsLogRepository).execute([
+      'francorangelcoronado@gmail.com',
+      'franrangel265@gmail.com',
+    ]);
 
-    // const logs = await logRepository.getLogs(LogSeverityLevel.low);
-    // console.log(logs);
-
-    // emailService.sendEmailWithFilesystemLogs([
-    //   'francorangelcoronado@gmail.com',
-    //   'franrangel265@gmail.com',
-    // ]);
+    emailService.sendEmailWithFilesystemLogs([
+      'francorangelcoronado@gmail.com',
+      'franrangel265@gmail.com',
+    ]);
 
     CronService.createJob('*/5 * * * * *', () => {
       const url: string = 'https://google.com';
