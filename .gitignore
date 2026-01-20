@@ -5,3 +5,4 @@ dist
 /mongo
 /postgres
 /src/generated/prisma
+/prisma/migrations
