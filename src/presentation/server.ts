@@ -1,6 +1,4 @@
-import { LogSeverityLevel } from '../domain/entities/log.entity';
 import { LogRepository } from '../domain/repository/log.repository';
-import { CheckService } from '../domain/usecases/checks/check-service';
 import { CheckServiceMultiple } from '../domain/usecases/checks/check-service-multiple';
 import { SendEmailLogs } from '../domain/usecases/logs/send-email-logs';
 import { FileSystemDatasource } from '../infrastructure/datasource/file-system.datasource';
