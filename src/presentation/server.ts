@@ -20,8 +20,8 @@ export class Server {
     //   'franrangel265@gmail.com',
     // ]);
 
-    const logs = await logRepository.getLogs(LogSeverityLevel.low);
-    console.log(logs);
+    // const logs = await logRepository.getLogs(LogSeverityLevel.low);
+    // console.log(logs);
 
     // emailService.sendEmailWithFilesystemLogs([
     //   'francorangelcoronado@gmail.com',

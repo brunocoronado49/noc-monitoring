@@ -1,6 +1,8 @@
+import { PrismaPg } from '@prisma/adapter-pg';
 import { envs } from './config/plugins/env.plugins';
-import { LogModel, MongoDatabase } from './data/mongo';
-import { Server } from './presentation/server';
+import { MongoDatabase } from './data/mongo';
+import { PrismaClient } from './generated/prisma/client';
+// import { Server } from './presentation/server';
 
 (async () => {
   main();
@@ -12,5 +14,19 @@ async function main() {
     dbName: envs.MONGO_DB_NAME,
   });
 
-  Server.start();
+  // const connectionString: string = envs.POSTGRES_URL;
+  // const adapter: PrismaPg = new PrismaPg({ connectionString });
+  // const prisma: PrismaClient = new PrismaClient({ adapter });
+
+  // const newLog = await prisma.logModel.create({
+  //   data: {
+  //     level: 'HIGH',
+  //     message: 'Test prisma message',
+  //     origin: 'app.ts',
+  //   },
+  // });
+
+  // const logs = await prisma.logModel.findMany();
+
+  // Server.start();
 }
