@@ -6,3 +6,4 @@ dist
 /postgres
 /src/generated/prisma
 /prisma/migrations
+/coverage
