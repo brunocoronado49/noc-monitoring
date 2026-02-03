@@ -4,6 +4,8 @@ dist
 .env
 /mongo
 /postgres
+/mongo-test
+/postgres-test
 /src/generated/prisma
 /prisma/migrations
 /coverage
