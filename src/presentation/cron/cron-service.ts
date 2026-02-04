@@ -1,4 +1,4 @@
-import { CronJob } from 'cron';
+import { CronJob } from "cron";
 
 type CronTime = string | Date;
 type OnTick = () => void;

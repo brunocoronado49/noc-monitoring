@@ -1,9 +1,9 @@
-import mongoose from 'mongoose';
-import { MongoDatabase } from '../init';
-import { envs } from '../../../config/plugins/env.plugins';
-import { LogModel } from './log.model';
+import mongoose from "mongoose";
+import { MongoDatabase } from "../init";
+import { envs } from "../../../config/plugins/env.plugins";
+import { LogModel } from "./log.model";
 
-describe('log.model.ts', () => {
+describe("log.model.ts", () => {
   beforeAll(async () => {
     await MongoDatabase.connect({
       mongoUrl: envs.MONGO_URL!,
@@ -15,11 +15,11 @@ describe('log.model.ts', () => {
     mongoose.connection.close();
   });
 
-  test('Should return LogModel', async () => {
+  test("Should return LogModel", async () => {
     const logData = {
-      origin: 'log.model.test.ts',
-      message: 'Test message',
-      level: 'low',
+      origin: "log.model.test.ts",
+      message: "Test message",
+      level: "low",
     };
 
     const log = await LogModel.create(logData);
@@ -29,26 +29,26 @@ describe('log.model.ts', () => {
         ...logData,
         createdAt: expect.any(Date),
         id: expect.any(String),
-      })
+      }),
     );
 
     await LogModel.findByIdAndDelete(log.id);
   });
 
-  test('Should return the schema object', () => {
+  test("Should return the schema object", () => {
     const schema = LogModel.schema.obj;
 
     expect(schema).toEqual(
       expect.objectContaining({
         level: {
           type: expect.any(Function),
-          enum: ['low', 'medium', 'high'],
-          default: 'low',
+          enum: ["low", "medium", "high"],
+          default: "low",
         },
         message: { type: expect.any(Function), required: true },
         createdAt: expect.any(Object),
         origin: { type: expect.any(Function) },
-      })
+      }),
     );
   });
 });
