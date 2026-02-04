@@ -35,10 +35,14 @@ describe("email-service.ts", () => {
     );
 
     expect(mockSendMail).toHaveBeenCalledWith({
-      attachments: expect.any(Array),
+      attachments: expect.arrayContaining([
+        { fileName: "logs-all.log", path: "logs/logs-all.log" },
+        { fileName: "logs-high.log", path: "logs/logs-high.log" },
+        { fileName: "logs-medium.log", path: "logs/logs-medium.log" },
+      ]),
       to: "francorangelcoronado@gmail.com",
-      subject: "Test mail",
-      html: "<h1>Hello World</h1>",
+      subject: "Logs del servidor",
+      html: "<h1>System Log</h1>",
     });
   });
 });
